@@ -14,6 +14,5 @@ public class NewIceCreamButton extends JButton {
 	public NewIceCreamButton(String text){
 		super(text);
 	}
-	
 
 }

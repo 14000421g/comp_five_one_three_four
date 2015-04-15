@@ -15,76 +15,77 @@ public class SystemAdminActionListener implements ActionListener{
 
 	public SystemAdminActionListener(IceCreamController controller){
 		this.controller = controller;
-		
+
 	}
 
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
+
 		String itemName = null;
 		String itemPrice = null;
-		
+
 		String itemType = null;
 
-		
-		SystemAdminView adminView = new SystemAdminView();
-		
-		int reply = JOptionPane.showOptionDialog(null, adminView.getContentPane(),
-		    "System Administration", JOptionPane.OK_CANCEL_OPTION,
-		    JOptionPane.QUESTION_MESSAGE, null, null, null);
-		
-		if (JOptionPane.OK_OPTION==reply){
-			
-			if (adminView.getFlavorRadioButton().isSelected()){
-				itemType = "flavor";
-			}else if (adminView.getDecoratorRadioButton().isSelected()){
-				itemType = "decorator";
+		try{
+			SystemAdminView adminView = new SystemAdminView();
+
+			int reply = JOptionPane.showOptionDialog(null, adminView.getContentPane(),
+					"System Administration", JOptionPane.OK_CANCEL_OPTION,
+					JOptionPane.QUESTION_MESSAGE, null, null, null);
+
+			if (JOptionPane.OK_OPTION==reply){
+
+				if (adminView.getFlavorRadioButton().isSelected()){
+					itemType = "flavor";
+				}else if (adminView.getDecoratorRadioButton().isSelected()){
+					itemType = "decorator";
+				}
+
+				itemName = adminView.getItemName().getText();
+				itemPrice = adminView.getItemPrice().getText();
+
 			}
-			
-			itemName = adminView.getItemName().getText();
-			itemPrice = adminView.getItemPrice().getText();
-			
-		}
-		
-		
-		
-		int price = 0;
-		
-		if (itemPrice!=null && !"".equals(itemPrice)){
-			price = Integer.parseInt(itemPrice);
-		}
 
+			int price = 0;
 
-		if ("flavor".equals(itemType)){
-
-			FlavorButton newBtn = new FlavorButton(itemName + " $"+price);
-			
-			if (controller.getIceCream().isHasFlavor()){
-				newBtn.setEnabled(false);
+			if (itemPrice!=null && !"".equals(itemPrice)){
+				price = Integer.parseInt(itemPrice);
 			}
-			
-			controller.getMyView().getFlavorButtonPanel().add(newBtn);
 
-			FlavorActionListener listener = new FlavorActionListener(controller ,price);
-			newBtn.addActionListener(listener);
-			
-			controller.getIceCream().registerObserver(newBtn);
-		
-		}
-		
-		if ("decorator".equals(itemType)){
-			JButton newDecoratorBtn = new JButton(itemName + " $"+price);
-			controller.getMyView().getDecoratorButtonPanel().add(newDecoratorBtn);
-			
-			ToppingActionListener decoratorListener = new ToppingActionListener( controller ,price);
-			newDecoratorBtn.addActionListener(decoratorListener);
-		}
-		
-		controller.getMyView().getMainFrame().revalidate();
-		controller.getMyView().getMainFrame().repaint();
+			if ("flavor".equals(itemType)){
 
+				FlavorButton newBtn = new FlavorButton(itemName + " $"+price);
+
+				if (controller.getIceCream().isHasFlavor()){
+					newBtn.setEnabled(false);
+				}
+
+				controller.getMyView().getFlavorButtonPanel().add(newBtn);
+
+				FlavorActionListener listener = new FlavorActionListener(controller ,price);
+				newBtn.addActionListener(listener);
+
+				controller.getIceCream().registerObserver(newBtn);
+
+			}
+
+			if ("decorator".equals(itemType)){
+				JButton newDecoratorBtn = new JButton(itemName + " $"+price);
+				controller.getMyView().getDecoratorButtonPanel().add(newDecoratorBtn);
+
+				ToppingActionListener decoratorListener = new ToppingActionListener( controller ,price);
+				newDecoratorBtn.addActionListener(decoratorListener);
+			}
+
+			controller.getMyView().getMainFrame().revalidate();
+			controller.getMyView().getMainFrame().repaint();
+		}catch (NumberFormatException nfe){
+			JOptionPane.showMessageDialog(null, "You can only input integer in the Item Price field.", "Error", JOptionPane.ERROR_MESSAGE);
+		}catch (Exception ignore){
+			// ignore
+		}
 
 	}
 

@@ -19,32 +19,27 @@ public class FlavorButton extends JButton implements Observer{
 	public FlavorButton(String text){
 		super(text);
 	}
-	
+
 
 	@Override
 	public void update(Observable o, Object obj) {
 		// TODO Auto-generated method stub
-		
-		
+
+
 		String str = (String) obj;
 		IceCream iceCream = (IceCream) o ;
-		
+
 		if (IceCream.OBSERVABLE_EVENT_ADD_TOTAL.equals(str) || IceCream.OBSERVABLE_EVENT_SET_FLAVOR.equals(str)){
 			if (iceCream.isHasFlavor()) {
 				this.setEnabled(false);
 			}
 		}
-		
-		
+
+
 		if (IceCream.OBSERVABLE_EVENT_RESET.equals(str)){
 			this.setEnabled(true);
 		}
-		
-		
-		
+
 	}
 
-
-	
-	
 }

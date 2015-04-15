@@ -35,7 +35,6 @@ public class POSView{
 	
 	public POSView(){
 		
-		
 		mainFrame.setSize(800, 600);
 		mainFrame.setResizable(false);
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -67,7 +66,6 @@ public class POSView{
 
 		pane.add(decoratorLabel,c);
 		
-
 		c.gridx = 2;
 		c.gridy = 0;
 		pane.add(newIceCreamButton,c);
@@ -82,10 +80,7 @@ public class POSView{
 		c.weighty = 0.6;
 		pane.add(flavorButtonPanel,c);
 
-		
-		
 		decoratorButtonPanel = new JPanel(new GridLayout(0,1));
-		
 		decoratorButtonPanel.add(m_mButton);
 		decoratorButtonPanel.add(strawberryButton);
 
@@ -98,7 +93,6 @@ public class POSView{
 		c.gridx = 1;
 		c.gridy = 2;
 		pane.add(dummyPanel,c);
-
 		
 		c.gridx = 0;
 		c.gridy = 2;
@@ -109,7 +103,6 @@ public class POSView{
 		c.gridy = 2;
 		pane.add(dummyPanel,c);
 
-		System.out.println(flavorLabel.getFont().getFontName());
 		totalLabel.setFont(new Font("LucidaGrande", Font.BOLD, 25));
 		totalLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		c.gridx = 2;

@@ -35,7 +35,6 @@ public class TotalLabel extends JLabel implements Observer{
 			IceCream m = (IceCream) o;
 			this.setText("Total: $"+ m.getTotalPrice());
 		}
-		this.repaint();
 		
 	}
 

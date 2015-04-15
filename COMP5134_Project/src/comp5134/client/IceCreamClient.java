@@ -12,15 +12,12 @@ public class IceCreamClient {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-
 		IceCream iceCream = new IceCreamSale();
 
 		POSView view = new POSView();
 
 		IceCreamController controller = new IceCreamController(view,iceCream);
 		controller.control();
-
-
 
 	}
 
